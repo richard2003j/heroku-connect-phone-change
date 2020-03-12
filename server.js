@@ -12,14 +12,13 @@ app.use(bodyParser.json());
 app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
-        //commont added 
         if (err) console.log(err);
         conn.query(
-            'UPDATE salesforce.Contact SET Phone = $1, MobilePhone = $1,HomePhone = $1 WHERE LOWER(FirstName) = LOWER($2) AND LOWER(LastName) = LOWER($3) AND LOWER(Email) = LOWER($4)',
+            'UPDATE salesforce.Contact SET Phone = $1, MobilePhone =WHERE LOWER(FirstName) = LOWER($2) AND LOWER(LastName) = LOWER($3) AND LOWER(Email) = LOWER($4)',
             [req.body.phone.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
             function(err, result) {
                 if (err != null || result.rowCount == 0) {
-                  conn.query('INSERT INTO salesforce.Contact (Phone, MobilePhone, HomePhone, FirstName, LastName, Email) VALUES ($1, $2, $3, $4, $5, $6)',
+                  conn.query('INSERT INTO salesforce.Contact (Phone, MobilePhone, HomePhone, FirstName, LastName, Email) VALUES ($1, $2, $3, $4, $5)',
                   [req.body.phone.trim(), req.body.phone.trim(),req.body.phone.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
                   function(err, result) {
                     done();
@@ -40,6 +39,10 @@ app.post('/update', function(req, res) {
             }
         );
     });
+});
+
+app.post('/init',function (err, conn, done){
+   res.status(200).json({error: "test init"}); 
 });
 
 app.listen(app.get('port'), function () {
