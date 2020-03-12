@@ -41,9 +41,9 @@ app.post('/update', function(req, res) {
     });
 });
 
-app.post('/init',function (err, conn, done){
+app.get('/init',function (err, conn, done){
     done();
-   res.json({tstmsg: "test init"}); 
+   res.json({tstmsg: 'test init'}); 
 });
 app.get('/',function (err, conn, done){
    res.sendFile('./public/index.html'); 
