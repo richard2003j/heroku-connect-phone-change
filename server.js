@@ -8,8 +8,8 @@ app.set('port', process.env.PORT || 5000);
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
-
-app.post('/update', function(req, res) {
+var router = app.Router();
+router.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
@@ -41,8 +41,8 @@ app.post('/update', function(req, res) {
     });
 });
 
-app.post('/init',function (err, conn, done){
-   res.status(200).json({error: "test init"}); 
+router.post('/init',function (err, conn, done){
+   res.json({error: "test init"}); 
 });
 
 app.listen(app.get('port'), function () {
