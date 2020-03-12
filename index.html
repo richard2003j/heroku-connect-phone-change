@@ -14,6 +14,10 @@
     </style>
     <script>
         $(function() {
+
+            //initialize
+            displayList();
+
             $("#phoneChangerForm").submit(function(event) {
                 event.preventDefault();
 
@@ -59,9 +63,32 @@
                     })
                 }
             });
+
+
+
         });
 
+function displayList(){
+    alert("begin!");
+                        $.ajax({
+                        url: "/init",
+                        method: "post",
+                        data: JSON.stringify({
+                            category: "未確認"
+                        }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function(data) {
+                            alert(data);
+                        },
+                        error: function(err) {
+                             alert(err);
+                        }
+                    });
+
+}
     </script>
+
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
