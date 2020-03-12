@@ -82,8 +82,8 @@ function displayList(){
                             alert(data);
                         },
                         error: function(err) {
-                             alert(err);
-                        }
+ errorMessage.text(err.responseJSON.error);
+                            error.show();                       }
                     });
 
 }
