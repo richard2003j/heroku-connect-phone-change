@@ -42,8 +42,7 @@ app.post('/update', function(req, res) {
 });
 
 app.post('/init',function (err, conn, done){
-    done();
-    res.json({testmsg: 'test init'}); 
+   res.json({tsg: "test init"}); 
 });
 app.get('/',function (err, conn, done){
    res.sendFile('./public/index.html'); 
