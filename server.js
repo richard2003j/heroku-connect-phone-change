@@ -41,6 +41,12 @@ app.post('/update', function(req, res) {
     });
 });
 
+app.post('/init',function (err, conn, done){
+   res.json({error: 'test init'}); 
+});
+app.get('/',function (err, conn, done){
+   res.sendFile('./public/index.html'); 
+});
 
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
