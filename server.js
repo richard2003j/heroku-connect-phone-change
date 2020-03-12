@@ -41,11 +41,11 @@ app.post('/update', function(req, res) {
     });
 });
 
-app.get('/init',function (err, conn, done){
+app.get('/init',function (req, res){
     done();
    res.json({tstmsg: 'test init'}); 
 });
-app.get('/',function (err, conn, done){
+app.get('/',function (req, res){
    res.sendFile('./public/index.html'); 
 });
 
