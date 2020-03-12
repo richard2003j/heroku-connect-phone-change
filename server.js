@@ -40,10 +40,27 @@ app.post('/update', function(req, res) {
         );
     });
 });
+            
 
 app.post('/init',function (req, res){
     
-   res.json({tstmsg: 'test init'}); 
+    pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
+        // watch for any connect issues
+        if (err) console.log(err);
+        conn.query(
+			'Select FirstName,LastName,Email,Phone, MobilePhone from salesforce.Contact ',
+			[],
+            function(err, result) {
+                if (err != null ) {
+					res.status(400).json({error: err.message});
+                }
+                else {
+                    done();
+                    res.json(result);
+                }
+            }
+        );
+    });
 });
 app.get('/',function (req, res){
    res.sendFile('./public/index.html'); 
