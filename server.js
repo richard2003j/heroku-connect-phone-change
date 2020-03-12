@@ -42,7 +42,7 @@ app.post('/update', function(req, res) {
 });
 
 app.post('/init',function (req, res){
-    done();
+    
    res.json({tstmsg: 'test init'}); 
 });
 app.get('/',function (req, res){
