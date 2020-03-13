@@ -42,13 +42,13 @@ app.post('/update', function(req, res) {
 });
             
 
-app.post('/init',function (req, res){
+app.post('/init-act',function (req, res){
     
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
         conn.query(
-			'Select FirstName,LastName,Email,Phone, MobilePhone from salesforce.Contact ',
+			'Select Name,TorihikisakiNo__c,Tantoshashimei__c,Denwabango__c, Emaiil1__c from salesforce.Account ',
 			[],
             function(err, result) {
                 if (err != null ) {

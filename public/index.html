@@ -69,9 +69,8 @@
         });
 
 function displayList(){
-    alert("begin!");
                         $.ajax({
-                        url: "/init",
+                        url: "/init-act",
                         method: "post",
                         data: JSON.stringify({
                             category: "未確認"
@@ -79,7 +78,7 @@ function displayList(){
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function(data) {
-                            alert('ok' + data.rows[0].firstname);
+                           alert('ok' + data.rows[0].Name);
                         },
                         error: function(err) {
  alert('error' + err);
