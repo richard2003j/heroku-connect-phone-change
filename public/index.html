@@ -79,7 +79,7 @@ function displayList(){
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function(data) {
-                            alert('ok' + data[0].firstname);
+                            alert('ok' + data.rows[0].firstname);
                         },
                         error: function(err) {
  alert('error' + err);
