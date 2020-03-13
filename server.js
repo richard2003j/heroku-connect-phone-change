@@ -48,7 +48,7 @@ app.get('/init-act',function (req, res){
         // watch for any connect issues
         if (err) console.log(err);
         conn.query(
-			'Select Name,TorihikisakiNo__c,Tantoshashimei__c,Denwabango__c, Emaiil1__c from salesforce.Account ',
+			'Select Name,TorihikisakiNo__c,Tantoshashimei__c,Denwabango__c, Emaiil1__c, Emaiil2__c, Emaiil3__c from salesforce.Account ',
 			[],
             function(err, result) {
                 if (err != null ) {

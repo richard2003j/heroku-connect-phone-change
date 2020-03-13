@@ -38,27 +38,26 @@ $(document).ready(function() {
 		data: data_act,
 		table: "#tblAct",
 		fields: [ {
-				label: "First name:",
-				name: "first_name"
+				label: "name:",
+				name: "name"
 			}, {
-				label: "Last name:",
-				name: "last_name"
+				label: "torihikisakino__c:",
+				name: "torihikisakino__c"
 			}, {
-				label: "Position:",
-				name: "position"
+				label: "tantoshashimei__c:",
+				name: "tantoshashimei__c"
 			}, {
-				label: "Office:",
-				name: "office"
+				label: "denwabango__c:",
+				name: "denwabango__c"
 			}, {
-				label: "Extension:",
-				name: "extn"
+				label: "emaiil1__c:",
+				name: "emaiil1__c"
 			}, {
-				label: "Start date:",
-				name: "start_date",
-				type: "datetime"
+				label: "emaiil2__c:",
+				name: "emaiil2__c"
 			}, {
-				label: "Salary:",
-				name: "salary"
+				label: "emaiil3__c:",
+				name: "emaiil3__c"
 			}
 		]
 	} );
@@ -70,15 +69,13 @@ $(document).ready(function() {
 		//ajax: "/api/staff",
 		data:data_act,
 		columns: [
-			{ data: null, render: function ( data, type, row ) {
-				// Combine the first and last names into a single table field
-				return data.first_name+' '+data.last_name;
-			} },
-			{ data: "position" },
-			{ data: "office" },
-			{ data: "extn" },
-			{ data: "start_date" },
-			{ data: "salary", render: $.fn.dataTable.render.number( ',', '.', 0, '$' ) }
+			{ data: "name" },
+			{ data: "torihikisakino__c" },
+			{ data: "tantoshashimei__c" },
+			{ data: "denwabango__c",render: $.fn.dataTable.render.number( ',', '-', 0, '' ) },
+			{ data: "emaiil1__c" },
+			{ data: "emaiil2__c" },
+			{ data: "emaiil3__c" }
 		],
 		select: true,
 		buttons: [
