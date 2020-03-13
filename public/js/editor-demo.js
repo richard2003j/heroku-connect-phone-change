@@ -58,7 +58,7 @@ if ( window.$ ) {
 				// one customised for Editor. This is actually tab index 4 from the
 				// DT tabs, but due to the reorder above it gets moved down one
 				var server = $('div.tabs > div').eq(3);
-				var table = $('#example').DataTable();
+				var table = $('#tblAct').DataTable();
 				var url = table.ajax.url();
 
 				if ( url && url.indexOf('php') !== -1 ) {
