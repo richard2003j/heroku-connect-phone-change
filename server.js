@@ -42,7 +42,7 @@ app.post('/update', function(req, res) {
 });
             
 
-app.post('/init-act',function (req, res){
+app.get('/init-act',function (req, res){
     
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
