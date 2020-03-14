@@ -72,7 +72,15 @@ $(document).ready(function() {
 		scrollX: true,
 		scrollY: 300,	
 		dom: "Bfrtip",
-		ajax: "/init-act",
+		ajax: {
+                        url: "/init-act",
+                        method: "get",
+                        data: JSON.stringify({
+                            category: "未確認"
+                        }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json"
+						},
 		//data:data_act,
 		columns: [
 			{ data: "name" },
