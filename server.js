@@ -63,7 +63,7 @@ app.get('/init-act',function (req, res){
     });
 });
 app.get('/',function (req, res){
-   res.sendFile('./public/index.html'); 
+   res.sendFile('./public/simple-tbl.html'); 
 });
 
 app.listen(app.get('port'), function () {
