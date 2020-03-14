@@ -16,7 +16,7 @@
         $(function() {
 
             //initialize
-            displayList();
+           // displayList();
 
             $("#phoneChangerForm").submit(function(event) {
                 event.preventDefault();
@@ -78,7 +78,7 @@ function displayList(){
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function(data) {
-                           alert('ok' + data.rows[0].name);
+                           //alert('ok' + data.rows[0].name);
                         },
                         error: function(err) {
  alert('error' + err);
