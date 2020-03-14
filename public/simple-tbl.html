@@ -78,7 +78,7 @@ $(document).ready(function() {
                         contentType: "application/json; charset=utf-8",
                         dataType: "json"
 			},
-		//data:data_act,
+		data:data_act,
 		columns: [
 			{ data: "name" },
 			{ data: "torihikisakino__c" },
@@ -112,12 +112,12 @@ $(document).ready(function() {
 				<li>契約（API)</li>
 				<li>基本契約</li>
 				<li>アクセスキー（API）</li>
-				<li>接続ユーザ（ユーザID）</li>
+				<li>接続ユーザ</li>
 				<li>ログ</li>
 			</ul>
 			<div class="tabs">
 				<div class="active">
-								<table id="tblAct" class="display" style="width:100%">
+					<table id="tblAct" class="display" style="width:100%">
 						<thead>
 							<tr>
 								<th class="name-column">取引先名</th>
@@ -131,6 +131,8 @@ $(document).ready(function() {
 						</thead>
 					</table>
 
+				</div>
+				<div class="js">
 				</div>
 				<div class="js">
 				</div>
