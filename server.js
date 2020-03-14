@@ -56,7 +56,7 @@ app.get('/init-act',function (req, res){
                 }
                 else {
                     done();
-                    res.json(result);
+                    res.json(result.rows);
                 }
             }
         );
