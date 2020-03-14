@@ -64,7 +64,7 @@ app.get('/init-act',function (req, res){
 });
 app.post('/init-act-edit',function (req, res){
     
-    console.log('action : ' + req.body.action);
+    console.log('action : ' + req.toString());
 	//console.log('data name : ' + req.body.data[0].name);
 	//res.json({data: req.data});
 });
