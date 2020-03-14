@@ -62,6 +62,12 @@ app.get('/init-act',function (req, res){
         );
     });
 });
+app.post('/init-act-edit',function (req, res){
+    
+    console.log('action : ' + req.action);
+	console.log('data name : ' + req.data[0].name);
+	res.json({data: req.data});
+});
 app.get('/',function (req, res){
    res.sendFile('./public/simple-tbl.html'); 
 });

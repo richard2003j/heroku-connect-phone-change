@@ -42,7 +42,7 @@ var data_cnt; // contact
 var data_act = [{"name":"テスト取引先","torihikisakino__c":"TR-000001","tantoshashimei__c":null,"denwabango__c":null,"emaiil1__c":null,"emaiil2__c":null,"emaiil3__c":null}];
 $(document).ready(function() {
 	editor = new $.fn.dataTable.Editor( {
-		//ajax: "/init-act",
+		ajax: "/init-act-edit",
 		//data: data_act,
 		table: "#tblAct",
 		idSrc:  'torihikisakino__c',
