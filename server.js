@@ -48,7 +48,7 @@ app.get('/account-init',function (req, res){
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
-		var qrystr = 'Select Name,TorihikisakiNo__c, HerokuId__c,Tantoshashimei__c, ' + 
+		var qrystr = 'Select Name,TorihikisakiNo__c,KakuninStatus__c, HerokuId__c,Tantoshashimei__c, ' + 
 		'Denwabango__c, Emaiil1__c, Emaiil2__c, Emaiil3__c ' + 
 		'	from salesforce.Account ';
 
@@ -86,37 +86,41 @@ app.get('/account-create-edit',function (req, res){
 		return;
 	}
 	inststr = 'INSERT INTO salesforce.Account( Name, HerokuId__c, ' +
+			' KakuninStatus__c,  ' +
 			' Tantoshashimei__c,  ' +
 			' Denwabango__c, ' +
 			' Emaiil1__c , ' +
 			' Emaiil2__c, ' +
 			' Emaiil3__c) ' +
-			' VALUES($1,$2,$3,$4,$5,$6,$7) ' ;
+			' VALUES($1,$2,$3,$4,$5,$6,$7,$8) ' ;
 	instvar =[upObj.name,
 			herokuId,
+			upObj.kakuninstatus__c,
 			upObj.tantoshashimei__c,
 			upObj.denwabango__c,
 			upObj.emaiil1__c,upObj.emaiil2__c,upObj.emaiil3__c,
 			];
 	//update qry
 	updstr = 'Update salesforce.Account SET Name = $1, HerokuId__c = $2, ' +
-			' Tantoshashimei__c = $3, ' +
-			' Denwabango__c = $4, ' +
-			' Emaiil1__c = $5, ' +
-			' Emaiil2__c = $6, ' +
-			' Emaiil3__c = $7 ' +
-			' WHERE  TorihikisakiNo__c= $8 ' ;
+			' KakuninStatus__c = $3, ' +
+			' Tantoshashimei__c = $4, ' +
+			' Denwabango__c = $5, ' +
+			' Emaiil1__c = $6, ' +
+			' Emaiil2__c = $7, ' +
+			' Emaiil3__c = $8 ' +
+			' WHERE  TorihikisakiNo__c= $9 ' ;
 	updvar =[upObj.name,
 			herokuId,
+			upObj.kakuninstatus__c,
 			upObj.tantoshashimei__c,
 			upObj.denwabango__c,
 			upObj.emaiil1__c,upObj.emaiil2__c,upObj.emaiil3__c,
 			idSyc];
 	//return qry
-	var qrystr = 'Select Name,TorihikisakiNo__c, HerokuId__c,Tantoshashimei__c, ' + 
+	var qrystr = 'Select Name,TorihikisakiNo__c,KakuninStatus__c, HerokuId__c,Tantoshashimei__c, ' + 
 		'Denwabango__c, Emaiil1__c, Emaiil2__c, Emaiil3__c ' + 
 		'	from salesforce.Account '+
-		' where TorihikisakiNo__c= $1 or HerokuId__c = $2';
+		' where TorihikisakiNo__c= $1 ';
 	
 	if(action == "create"){
 		updstr = inststr;
@@ -138,7 +142,7 @@ app.get('/account-create-edit',function (req, res){
                 else {
 					conn.query(
 						qrystr,
-						[idSyc,herokuId],
+						[idSyc],
 						function(err, result) {
 							if (err != null ) {
 								res.status(400).json({error: err.message});
