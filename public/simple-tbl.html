@@ -39,49 +39,59 @@ var mTable;
 var data_act; // account
 var data_cnt; // contact
 // xxx
-var data_act = [{"name":"テスト取引先","torihikisakino__c":"TR-000001","tantoshashimei__c":null,"denwabango__c":null,"emaiil1__c":null,"emaiil2__c":null,"emaiil3__c":null}];
+var data_act = [{"name":"テスト取引先","torihikisakino__c":"TR-000001","herokuid__c":"h1111","tantoshashimei__c":null,"denwabango__c":null,"emaiil1__c":null,"emaiil2__c":null,"emaiil3__c":null},{"name":"東京海上日動火災保険株式会社","torihikisakino__c":"TR-000007","herokuid__c":null,"tantoshashimei__c":null,"denwabango__c":null,"emaiil1__c":null,"emaiil2__c":null,"emaiil3__c":null}];
 $(document).ready(function() {
 	editor = new $.fn.dataTable.Editor( {
-		ajax: "/init-act-edit",
+		ajax: {
+			url: "/account-create-edit",
+			method: "get",
+		},
 		//data: data_act,
 		table: "#tblAct",
 		idSrc:  'torihikisakino__c',
-		fields: [ {
-				label: "取引先名:",
-				name: "name"
-			}, {
-				label: "代表者氏名:",
-				name: "tantoshashimei__c"
-			}, {
-				label: "電話番号:",
-				name: "denwabango__c"
-			}, {
-				label: "E-mail 1:",
-				name: "emaiil1__c"
-			}, {
-				label: "E-mail 2:",
-				name: "emaiil2__c"
-			}, {
-				label: "E-mail 3:",
-				name: "emaiil3__c"
-			}
-		]
+		fields: [ 
+					{	label: "取引先名:",
+						name: "name"
+					}, {
+						label: "代表者氏名:",
+						name: "tantoshashimei__c"
+					}, {
+						label: "HerokuId:",
+						name: "herokuid__c"
+					}, {
+						label: "電話番号:",
+						name: "denwabango__c"
+					}, {
+						label: "E-mail 1:",
+						name: "emaiil1__c"
+					}, {
+						label: "E-mail 2:",
+						name: "emaiil2__c"
+					}, {
+						label: "E-mail 3:",
+						name: "emaiil3__c"
+					}
+				]
 	} );
 
 	mTable = $('#tblAct').DataTable( {
 		scrollX: true,
-		scrollY: 300,	
+		scrollY: 400,	
 		dom: "Bfrtip",
 		ajax: {
-                        url: "/init-act",
+                        url: "/account-init",
                         method: "get",
+						data: JSON.stringify({
+                            name: "xxxx"
+                        }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json"
 			},
-		data:data_act,
+		//data:data_act,
 		columns: [
 			{ data: "name" },
 			{ data: "torihikisakino__c" },
+			{ data: "herokuid__c" },
 			{ data: "tantoshashimei__c" },
 			{ data: "denwabango__c" },
 			{ data: "emaiil1__c" },
@@ -91,8 +101,7 @@ $(document).ready(function() {
 		select: true,
 		buttons: [
 			{ extend: "create", editor: editor },
-			{ extend: "edit",   editor: editor },
-			{ extend: "remove", editor: editor }
+			{ extend: "edit",   editor: editor }
 		]
 	} );
 } );
@@ -122,6 +131,7 @@ $(document).ready(function() {
 							<tr>
 								<th class="name-column">取引先名</th>
 								<th class="name-column">取引先No</th>
+								<th class="name-column">HerokuId</th>
 								<th class="name-column">担当者氏名</th>
 								<th class="name-column">電話番号</th>
 								<th class="name-column">E-mail 1</th>
