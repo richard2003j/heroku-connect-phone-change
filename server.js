@@ -9,48 +9,35 @@ app.set('port', process.env.PORT || 5000);
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-app.post('/update', function(req, res) {
-    pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
-        // watch for any connect issues
-        if (err) console.log(err);
-        conn.query(
-            'UPDATE salesforce.Contact SET Phone = $1, MobilePhone =$1 WHERE LOWER(FirstName) = LOWER($2) AND LOWER(LastName) = LOWER($3) AND LOWER(Email) = LOWER($4)',
-            [req.body.phone.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
-            function(err, result) {
-                if (err != null || result.rowCount == 0) {
-                  conn.query('INSERT INTO salesforce.Contact (Phone, MobilePhone, HomePhone, FirstName, LastName, Email) VALUES ($1, $2, $3, $4, $5, $6)',
-                  [req.body.phone.trim(), req.body.phone.trim(),req.body.phone.trim(), req.body.firstName.trim(), req.body.lastName.trim(), req.body.email.trim()],
-                  function(err, result) {
-                    done();
-                    if (err) {
-                        res.status(400).json({error: err.message});
-                    }
-                    else {
-                        // this will still cause jquery to display 'Record updated!'
-                        // eventhough it was inserted
-						console.log(result);
-                        res.json(result);
-                    }
-                  });
-                }
-                else {
-                    done();
-                    res.json(result);
-                }
-            }
-        );
-    });
-});
-            
+
 
 app.get('/account-init',function (req, res){
     
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
-		var qrystr = 'Select Name,TorihikisakiNo__c,KakuninStatus__c, HerokuId__c,Tantoshashimei__c, ' + 
-		'Denwabango__c, Emaiil1__c, Emaiil2__c, Emaiil3__c ' + 
-		'	from salesforce.Account ';
+		var qrystr = 'Select ' + 
+							'Name ,' + 
+							'TorihikisakiNo__c ,' + 
+							'Eibuntorihikisakimei__c ,' + 
+							'Kakogaishamei__c ,' + 
+							'Kuni__c ,' + 
+							'Yuubimbango__c ,' + 
+							'Jusho1__c ,' + 
+							'Jusho2__c ,' + 
+							'Daihyoshayakushoku__c ,' + 
+							'Daihyoshashimei__c ,' + 
+							'Busho__c ,' + 
+							'Tantoshashimei__c ,' + 
+							'Denwabango__c ,' + 
+							'Emaiil1__c ,' + 
+							'Emaiil2__c ,' + 
+							'Emaiil3__c ,' + 
+							'KakuninStatus__c ,' + 
+							'KeiyakuStatus__c ,' + 
+							'Shinseistatus__c ,' + 
+							'HerokuId__c ' + 
+				'	from salesforce.Account ';
 
         conn.query(
 			qrystr,
