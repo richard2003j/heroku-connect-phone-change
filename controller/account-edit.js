@@ -156,6 +156,7 @@ module.exports = function (req, res){
 	}
 
     console.log( updstr);
+    console.log( updvar);
 
 	pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
