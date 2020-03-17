@@ -5,7 +5,7 @@ module.exports = function (req, res){
      var action = req.query.action;
 
      //dispather
-     if(action == null && action != undefined){
+     if(action == 'edit' || action == 'create'){
 		 var idSyc = Object.keys(req.query.data)[0];
 		 var upInsO = req.query.data[idSyc];
 		 var herokuId = upInsO.herokuid__c;
