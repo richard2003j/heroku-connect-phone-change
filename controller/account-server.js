@@ -1,7 +1,7 @@
 module.exports = function (req, res){
 	var pg = require('pg');
 
-     console.log("uri:account-crus");
+     console.log("uri:account-crud");
      var action = req.query.action;
 
      //dispather
@@ -186,7 +186,7 @@ module.exports = function (req, res){
                 else {
 					conn.query(
 						qrystr,
-						[idSyc],
+						qryVar,
 						function(err, result) {
 							if (err != null ) {
 								res.status(400).json({error: err.message});
