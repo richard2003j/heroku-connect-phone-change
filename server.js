@@ -9,11 +9,8 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 // account list
-const AccountListCtl = require('./controller/account-list');
-app.get('/account-init',AccountListCtl);
-// account update insert
-const AccountEidtCtl = require('./controller/account-edit');
-app.get('/account-create-edit',AccountEidtCtl);
+const AccountListCtl = require('./controller/account-server');
+app.get('/account-crud',AccountListCtl);
 
 
 app.listen(app.get('port'), function () {
