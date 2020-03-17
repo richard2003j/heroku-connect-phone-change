@@ -123,7 +123,7 @@ module.exports = function (req, res){
 					upInsO.keiyakustatus__c,
 					upInsO.shinseistatus__c,
 					upInsO.herokuid__c,
-					upInsO.torihikisakino__c
+					idSyc
 			];
 	//return qry
 	var qrystr = 'Select ' +
