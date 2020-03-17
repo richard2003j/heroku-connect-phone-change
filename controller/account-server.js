@@ -154,10 +154,10 @@ module.exports = function (req, res){
 	if(action == "create"){
 		updstr = inststr;
 		updvar = instvar;
-		qrystr +=' where HerokuId__c= $1 ';
+		qrystr += ' where HerokuId__c= $1 ';
 		qryVar = [herokuId];
 	}elseif(action == "edit"){
-		qrystr +=' where TorihikisakiNo__c= $1 ';
+		qrystr += ' where TorihikisakiNo__c= $1 ';
 	}else{
 		updstr = "select count(id) from salesforce.Account ";
 		updvar = [];
