@@ -11,6 +11,9 @@ app.use(bodyParser.json());
 // account list
 const AccountListCtl = require('./controller/account-server');
 app.get('/account-crud',AccountListCtl);
+// contact list
+const ContactListCtl = require('./controller/contact-server');
+app.get('/contact-crud',ContactListCtl);
 
 
 app.listen(app.get('port'), function () {
