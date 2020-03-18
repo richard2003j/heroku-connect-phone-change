@@ -152,7 +152,7 @@ module.exports = function (req, res){
 					'Contents__c ,' + 
 					'HerokuId__c ,' + 
 					'Seikyushohakko__c ' + 
-				' from salesforce.Contact a left join salesforce.Account on ' +
+				' from salesforce.Contact a left join salesforce.Account b on ' +
 				'  a.AccountId = b.Sfid ';
 	var qryVar = [idSyc];
 
