@@ -134,7 +134,7 @@ module.exports = function (req, res){
 	var qrystr = 'Select ' +
 					'Name ,' + 
 					'LastName ,' + 
-					'AccountId ,' + 
+					'b.Name AccountId ,' + 
 					'Tantokubun__c ,' + 
 					'Kaishamei__c ,' + 
 					'Eibuntorihikisakimei__c ,' + 
@@ -152,7 +152,8 @@ module.exports = function (req, res){
 					'Contents__c ,' + 
 					'HerokuId__c ,' + 
 					'Seikyushohakko__c ' + 
-				' from salesforce.Contact ';
+				' from salesforce.Contact a left join salesforce.Account on ' +
+				'  a.AccountId = b.Sfid ';
 	var qryVar = [idSyc];
 
 	// dispather
