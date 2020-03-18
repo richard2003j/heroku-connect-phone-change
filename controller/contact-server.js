@@ -132,26 +132,26 @@ module.exports = function (req, res){
 	}
 	//return qry
 	var qrystr = 'Select ' +
-					'Name ,' + 
-					'LastName ,' + 
+					'a.Name ,' + 
+					'a.LastName ,' + 
 					'b.Name AccountId ,' + 
-					'Tantokubun__c ,' + 
-					'Kaishamei__c ,' + 
-					'Eibuntorihikisakimei__c ,' + 
-					'Kuni__c ,' + 
-					'Yuubimbango__c ,' + 
-					'Jusho1__c ,' + 
-					'Jusho2__c ,' + 
-					'Busho__c ,' + 
-					'Denwabango__c ,' + 
-					'Email1__c ,' + 
-					'Email2__c ,' + 
-					'Email3__c ,' + 
-					'Biko__c ,' + 
-					'KakuninStatus__c ,' + 
-					'Contents__c ,' + 
-					'HerokuId__c ,' + 
-					'Seikyushohakko__c ' + 
+					'a.Tantokubun__c ,' + 
+					'a.Kaishamei__c ,' + 
+					'a.Eibuntorihikisakimei__c ,' + 
+					'a.Kuni__c ,' + 
+					'a.Yuubimbango__c ,' + 
+					'a.Jusho1__c ,' + 
+					'a.Jusho2__c ,' + 
+					'a.Busho__c ,' + 
+					'a.Denwabango__c ,' + 
+					'a.Email1__c ,' + 
+					'a.Email2__c ,' + 
+					'a.Email3__c ,' + 
+					'a.Biko__c ,' + 
+					'a.KakuninStatus__c ,' + 
+					'a.Contents__c ,' + 
+					'a.HerokuId__c ,' + 
+					'a.Seikyushohakko__c ' + 
 				' from salesforce.Contact a left join salesforce.Account b on ' +
 				'  a.AccountId = b.Sfid ';
 	var qryVar = [idSyc];
