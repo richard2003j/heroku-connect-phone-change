@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 // common sfid, name
 const CommonListCtl = require('./controller/common-sfidname');
-app.get('/common-init',AccountListCtl);
+app.get('/common-init',CommonListCtl);
 // contact list
 // account list
 const AccountListCtl = require('./controller/account-server');
