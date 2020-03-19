@@ -10,7 +10,7 @@ module.exports = function (req, res){
 		 var upInsO = req.query.data[idSyc];
 		 var herokuId = upInsO.herokuid__c;
 
-	    console.log("id: " +idSyc);
+	    console.log("id: " + idSyc);
 	    console.log("herokuId: " +herokuId);
 	    console.log("object:" );
 	    console.log( upInsO);
@@ -127,7 +127,7 @@ module.exports = function (req, res){
 					upInsO.contents__c,
 					upInsO.herokuid__c,
 					upInsO.seikyushohakko__c,
-					IdSyc
+					idSyc
 				];
 	}
 	//return qry
