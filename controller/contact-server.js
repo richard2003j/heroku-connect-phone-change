@@ -86,7 +86,7 @@ module.exports = function (req, res){
 						upInsO.seikyushohakko__c
 				];
 		//update qry
-		updstr = 'Update salesforce.Account SET '+
+		updstr = 'Update salesforce.Contact SET '+
 							'LastName= $1  ,'  +
 							'AccountId= $2  ,'  +
 							'Tantokubun__c= $3  ,'  +
