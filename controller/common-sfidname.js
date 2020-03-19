@@ -15,8 +15,8 @@ module.exports = function (req, res){
 	        // watch for any connect issues
 	        if (err) console.log(err);
 	        conn.query(
-				updstr,
-				updvar,
+				qrystr,
+				qryvar,
 	            function(err, result) {
 	                if (err != null ) {
 						res.status(400).json({error: err.message});
