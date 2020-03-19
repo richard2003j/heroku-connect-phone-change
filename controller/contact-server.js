@@ -66,7 +66,7 @@ module.exports = function (req, res){
 				') ' ;
 		instvar =[
 						upInsO.lastname,
-						upInsO.accountid,
+						upInsO.accountid_v,
 						upInsO.tantokubun__c,
 						upInsO.kaishamei__c,
 						upInsO.eibuntorihikisakimei__c,
@@ -109,7 +109,7 @@ module.exports = function (req, res){
 				' WHERE  Name= $20 ' ;
 		updvar =[
 					upInsO.lastname,
-					upInsO.accountid,
+					upInsO.accountid_v,
 					upInsO.tantokubun__c,
 					upInsO.kaishamei__c,
 					upInsO.eibuntorihikisakimei__c,
