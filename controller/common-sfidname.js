@@ -1,10 +1,12 @@
 module.exports = function (req, res){
 	var pg = require('pg');
 
-    //console.log("uri:account-crud");
+    console.log("uri:common-init");
     var action = req.query.action;
 	var qrystr =' Select Sfid,Name  ';
 	var qryvar =[];
+
+	console.log("action:" + action);
 	//return qry
 	if(action == "account-id"){qrystr += ' from salesforce.Account   ';}
 	if(action == "contents-id"){qrystr += ' from salesforce.TMI_Contents__c  ';}
