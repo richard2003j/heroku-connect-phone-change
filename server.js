@@ -8,6 +8,10 @@ app.set('port', process.env.PORT || 5000);
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
+// common sfid, name
+const CommonListCtl = require('./controller/common-sfidname');
+app.get('/common-init',AccountListCtl);
+// contact list
 // account list
 const AccountListCtl = require('./controller/account-server');
 app.get('/account-crud',AccountListCtl);
