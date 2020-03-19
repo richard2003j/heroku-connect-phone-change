@@ -3,7 +3,7 @@ module.exports = function (req, res){
 
     console.log("uri:common-init");
     var action = req.query.action;
-	var qrystr =' Select Sfid,Name  ';
+	var qrystr =' Select Sfid name,Name label ';
 	var qryvar =[];
 
 	console.log("action:" + action);
