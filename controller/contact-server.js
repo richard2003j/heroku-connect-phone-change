@@ -149,21 +149,21 @@ module.exports = function (req, res){
 					'a.Email3__c ,' + 
 					'a.Biko__c ,' + 
 					'a.KakuninStatus__c ,' + 
-					'a.Contents__c ,' + 
+					'c.Name Contents__c ,' + 
 					'a.HerokuId__c ,' + 
 					'a.Seikyushohakko__c ' + 
 				' from salesforce.Contact a left join salesforce.Account b on ' +
-				'  a.AccountId = b.Sfid ';
+				'  a.AccountId = b.Sfid left join salesforce.TMI_Contents__c c on a.Contents__c = c.Sfid';
 	var qryVar = [idSyc];
 
 	// dispather
 	if(action == "create"){
 		updstr = inststr;
 		updvar = instvar;
-		qrystr += ' where HerokuId__c= $1 ';
+		qrystr += ' where a.HerokuId__c= $1 ';
 		qryVar = [herokuId];
 	}else if(action == "edit"){
-		qrystr += ' where Name = $1 ';
+		qrystr += ' where a.Name = $1 ';
 	}else{
 		updstr = "select count(id) from salesforce.Contact ";
 		updvar = [];
