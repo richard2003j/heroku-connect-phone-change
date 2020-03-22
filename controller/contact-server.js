@@ -66,7 +66,7 @@ module.exports = function (req, res){
 				') ' ;
 		instvar =[
 						upInsO.lastname,
-						upInsO.accountid_v,
+						upInsO.accountid,
 						upInsO.tantokubun__c,
 						upInsO.kaishamei__c,
 						upInsO.eibuntorihikisakimei__c,
@@ -109,7 +109,7 @@ module.exports = function (req, res){
 				' WHERE  Name= $20 ' ;
 		updvar =[
 					upInsO.lastname,
-					upInsO.accountid_v,
+					upInsO.accountid,
 					upInsO.tantokubun__c,
 					upInsO.kaishamei__c,
 					upInsO.eibuntorihikisakimei__c,
@@ -132,38 +132,37 @@ module.exports = function (req, res){
 	}
 	//return qry
 	var qrystr = 'Select ' +
-					'a.Name ,' + 
-					'a.LastName ,' + 
-					'b.Name AccountId ,' + 
-					'a.Tantokubun__c ,' + 
-					'a.Kaishamei__c ,' + 
-					'a.Eibuntorihikisakimei__c ,' + 
-					'a.Kuni__c ,' + 
-					'a.Yuubimbango__c ,' + 
-					'a.Jusho1__c ,' + 
-					'a.Jusho2__c ,' + 
-					'a.Busho__c ,' + 
-					'a.Denwabango__c ,' + 
-					'a.Email1__c ,' + 
-					'a.Email2__c ,' + 
-					'a.Email3__c ,' + 
-					'a.Biko__c ,' + 
-					'a.KakuninStatus__c ,' + 
-					'c.Name Contents__c ,' + 
-					'a.HerokuId__c ,' + 
-					'a.Seikyushohakko__c ' + 
-				' from salesforce.Contact a left join salesforce.Account b on ' +
-				'  a.AccountId = b.Sfid left join salesforce.TMI_Contents__c c on a.Contents__c = c.Sfid';
+					'Name ,' + 
+					'LastName ,' + 
+					'AccountId ,' + 
+					'Tantokubun__c ,' + 
+					'Kaishamei__c ,' + 
+					'Eibuntorihikisakimei__c ,' + 
+					'Kuni__c ,' + 
+					'Yuubimbango__c ,' + 
+					'Jusho1__c ,' + 
+					'Jusho2__c ,' + 
+					'Busho__c ,' + 
+					'Denwabango__c ,' + 
+					'Email1__c ,' + 
+					'Email2__c ,' + 
+					'Email3__c ,' + 
+					'Biko__c ,' + 
+					'KakuninStatus__c ,' + 
+					'Contents__c ,' + 
+					'HerokuId__c ,' + 
+					'Seikyushohakko__c ' + 
+				' from salesforce.Contact   ';
 	var qryVar = [idSyc];
 
 	// dispather
 	if(action == "create"){
 		updstr = inststr;
 		updvar = instvar;
-		qrystr += ' where a.HerokuId__c= $1 ';
+		qrystr += ' where HerokuId__c= $1 ';
 		qryVar = [herokuId];
 	}else if(action == "edit"){
-		qrystr += ' where a.Name = $1 ';
+		qrystr += ' where Name = $1 ';
 	}else{
 		updstr = "select count(id) from salesforce.Contact ";
 		updvar = [];
