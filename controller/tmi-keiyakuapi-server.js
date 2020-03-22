@@ -114,7 +114,7 @@ module.exports = function (req, res){
 						upInsO.himokuryokin3__c==''?null:upInsO.himokuryokin3__c,
 						upInsO.himokuryokin4__c==''?null:upInsO.himokuryokin4__c,
 						upInsO.himokuryokin5__c==''?null:upInsO.himokuryokin5__c,
-						upInsO.hoshokin__c==''?null:upInsO.henkomaekeiyaku__c,
+						upInsO.hoshokin__c==''?null:upInsO.hoshokin__c,
 						upInsO.henkomaekeiyaku__c==''?null:upInsO.henkomaekeiyaku__c,
 						upInsO.herokuid__c
 					];
