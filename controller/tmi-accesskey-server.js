@@ -79,7 +79,7 @@ module.exports = function (req, res){
 	var log_msg = ' (select record_id, table_name, sf_message from salesforce._trigger_log ' +
 		' where (record_id, table_name, processed_at) in ' + 
 		'(select record_id, table_name,  max(processed_at) as processed_at  from salesforce._trigger_log ' + 
-		' where table_name = $1 ';
+		' where table_name = $1 ' +
 		' group by record_id, table_name) ) b ';
 	
 	var qrystr = 'Select ' +
@@ -128,6 +128,8 @@ module.exports = function (req, res){
 					res.status(400).json({error: err.message});
                 }
                 else {
+                	console.log( qrystr);
+
 					conn.query(
 						qrystr,
 						qryVar,
