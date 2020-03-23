@@ -13,7 +13,7 @@ module.exports = function (req, res){
 	if(action == "tmi-userid"){qrystr += ' from salesforce.User  ';}
 	if(action == "contact-id"){qrystr += ' from salesforce.Contact  ';}
 	if(action == "kihonkeiyaku-id"){qrystr += ' from salesforce.TMI_KihonKeiyaku__c  ';}
-	if(action == "accesskey-id"){qrystr += ' from salesforce.TMI_Accesskey_API_Kanri__c  ';}
+	if(action == "accesskey-id"){qrystr += ' from salesforce.TMI_Accesskey_API__c  ';}
 	if(action == "shohin-id"){qrystr += ' from salesforce.TMI_Shohin_API__c ';}
 	if(action == "keiyakuapi-id"){qrystr += ' from salesforce.TMI_Keiyaku_API__c  ';}
 	if(action != ''){
