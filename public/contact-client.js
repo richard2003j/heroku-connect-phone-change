@@ -96,19 +96,17 @@
 		
 		// validations
 		editor.on( 'preSubmit', function ( e, o, action ) {
-	        if ( action == 'create' ) {
-	            var lastname = this.field( 'lastname' );
-	 
-	                if ( ! lastname.val() ) {
-	                    lastname.error( '姓が必須です。' );
-	                }
-	                 
-	                if ( lastname.val().length >= 80 ) {
-	                    lastname.error( '姓の長さは80文字以外です。' );
-	                }
+	        if ( action == 'create' ||  action == 'edit' ) {
+	            
+				//姓
+				var lastname = this.field( 'lastname' );
+	            if ( ! lastname.val() ) lastname.error( '姓が必須です。' );
+                if ( lastname.val().length >= 80 )  lastname.error( '姓の長さは80文字以外です。' );
 
-	            // ... additional validation rules
-	 
+	            //Email１
+				var email1__c = this.field( 'email1__c' );
+	            if ( ! email1__c.val() ) lastname.error( 'Email1が必須です。' );
+ 
 	            // If any error was reported, cancel the submission so it can be corrected
 	            if ( this.inError() ) {
 	                return false;
