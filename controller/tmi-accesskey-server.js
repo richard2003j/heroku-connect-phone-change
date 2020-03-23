@@ -85,8 +85,9 @@ module.exports = function (req, res){
 						"to_char(TestSetsuzokukaishibi__c,'YYYY-MM-DD') as TestSetsuzokukaishibi__c," + 
 						'Henkomaeaccesskey__c ,' + 
 						'Henkoriyu__c ,' + 
-						'HerokuId__c ' + 
-					' from salesforce.TMI_Accesskey_API__c   ';
+						'HerokuId__c, ' + 
+						'sf_message ' + 
+					' from salesforce.TMI_Accesskey_API__c a left join  salesforce._trigger_log b on a.sfid = b.sfid  ';
 	var qryVar = [idSyc];
 
 	// dispather
