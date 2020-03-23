@@ -125,7 +125,7 @@ module.exports = function (req, res){
 					upInsO.biko__c,
 					upInsO.kakuninstatus__c,
 					upInsO.contents__c,
-					upInsO.herokuid__c,
+					upInsO.herokuid__c==''?null:upInsO.herokuid__c,
 					upInsO.seikyushohakko__c,
 					idSyc
 				];
