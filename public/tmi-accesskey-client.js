@@ -108,7 +108,8 @@
 						render: function ( data, type, row, meta ) {
 							return	data != ''  && data != null? accesskey_dic[data]:data;} },
 				{ data: 'henkoriyu__c'},
-				{ data: 'herokuid__c'}
+				{ data: 'herokuid__c'},
+				{ data: 'sf_message'}
 			],
 			select: true,
 			buttons: [
