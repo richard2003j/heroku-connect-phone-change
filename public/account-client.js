@@ -40,7 +40,7 @@
 						},
 						{	label: '申請ステータス' , name:'shinseistatus__c' ,   
 									type: "select" , 
-									options:[ { label: "なし", name: null}, { label: "受付", name: "受付"}, { label: "反社チェック中", name: "反社チェック中"}, { label: "覚書確認中", name: "覚書確認中"}, { label: "発行済み", name: "発行済み"} ]
+									options:[ { label: "", name: null}, { label: "受付", name: "受付"}, { label: "反社チェック中", name: "反社チェック中"}, { label: "覚書確認中", name: "覚書確認中"}, { label: "発行済み", name: "発行済み"} ]
 						},
 						{	label: 'HerokuId' , name:'herokuid__c'    }
 					]
