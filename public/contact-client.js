@@ -86,7 +86,11 @@
 						 	options:[{label:'',name:null}].concat(com_contents)
 						 },
 						{	label: 'HerokuId' , name:'herokuid__c'    },
-						{	label: '請求書発行' , name:'seikyushohakko__c'    }
+						{	label: '請求書発行' , name:'seikyushohakko__c',
+								type: "select" , 
+								options:[ { label: "有", name: "有"}, { label: "無", name: "無"} ]
+
+						}
 					]
 		} );
 
