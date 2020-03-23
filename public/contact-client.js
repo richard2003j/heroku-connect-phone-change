@@ -96,7 +96,7 @@
 		
 		// validations
 		editor.on( 'preSubmit', function ( e, o, action ) {
-	        if ( action !== 'create' ) {
+	        if ( action == 'create' ) {
 	            var lastname = this.field( 'lastname' );
 	 
 	                if ( ! lastname.val() ) {
