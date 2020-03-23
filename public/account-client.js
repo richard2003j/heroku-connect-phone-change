@@ -36,7 +36,7 @@
 						},
 						{	label: '契約ステータス' , name:'keiyakustatus__c',    
 									type: "select" , 
-									options:[ { label: "なし", name: null}, { label: "未契約", name: "未契約"}, { label: "既契約者", name: "既契約者"}, { label: "解約者", name: "解約者"} ]
+									options:[ { label: "", name: null}, { label: "未契約", name: "未契約"}, { label: "既契約者", name: "既契約者"}, { label: "解約者", name: "解約者"} ]
 						},
 						{	label: '申請ステータス' , name:'shinseistatus__c' ,   
 									type: "select" , 
