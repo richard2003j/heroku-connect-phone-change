@@ -93,7 +93,30 @@
 						}
 					]
 		} );
+		
+		// validations
+		editor.on( 'preSubmit', function ( e, o, action ) {
+	        if ( action !== 'create' ) {
+	            var lastname = this.field( 'lastname' );
+	 
+	                if ( ! lastname.val() ) {
+	                    lastname.error( '姓が必須です。' );
+	                }
+	                 
+	                if ( lastname.val().length >= 80 ) {
+	                    lastname.error( '姓の長さは80文字以外です。' );
+	                }
 
+	            // ... additional validation rules
+	 
+	            // If any error was reported, cancel the submission so it can be corrected
+	            if ( this.inError() ) {
+	                return false;
+	            }
+	        }
+	    } );
+	    
+	    
 		mTable = $('#tblAct').DataTable( {
 			scrollX: true,
 			scrollY: 460,	
