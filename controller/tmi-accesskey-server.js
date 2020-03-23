@@ -94,10 +94,10 @@ module.exports = function (req, res){
 	if(action == "create"){
 		updstr = inststr;
 		updvar = instvar;
-		qrystr += ' where HerokuId__c= $1 ';
+		qrystr += ' and HerokuId__c= $1 ';
 		qryVar = [herokuId];
 	}else if(action == "edit"){
-		qrystr += ' where Name = $1 ';
+		qrystr += ' and Name = $1 ';
 	}else{
 		updstr = "select count(id) from salesforce.Contact ";
 		updvar = [];

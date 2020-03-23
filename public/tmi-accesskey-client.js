@@ -68,6 +68,7 @@
 			idSrc:  'name',
 			fields: [ 
 				{	label: 'アクセスキー管理No' , name:'name' , type:'readonly', attr:{ disabled:true }     },
+				{	label: 'SFDCメッセージ' , name:'sf_message' , type:'readonly', attr:{ disabled:true }     },
 				{	label: '基本契約No' , name:'kihonkeiyakuno__c' , type: 'select', 
 						options:	[{label:'',value:null}].concat(com_kihonkeiyaku)        },
 				{	label: '取引先名' , name:'torihikisakimei__c'  , type: 'select', 
