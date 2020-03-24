@@ -1,5 +1,5 @@
 	function makeDic(o){
-						str = '';
+						var str = '';
 						for(var i=0; i<o.length; i++){
 						//if(o[i].label==r){selv = o[i].value; break;}
 						if(i==0)
@@ -124,7 +124,9 @@
 						{ data: 'seikyutantosha_sonotaryokin__c',
 						render: function ( data, type, row, meta ) {
 							return	data != ''  && data != null? contact_dic[data]:data;} },
-						{ data: 'herokuid__c'}
+						{ data: 'herokuid__c'},
+						{ data: 'sf_message'}
+
 					],
 			select: true,
 			buttons: [

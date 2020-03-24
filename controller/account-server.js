@@ -22,7 +22,7 @@ module.exports = function (req, res){
 			res.status(400).json({error: '新規作成でHerokuIDが必須です。'});
 			return;
 		}
-		inststr = 'INSERT INTO salesforce.Account( ' + 
+		var inststr = 'INSERT INTO salesforce.Account( ' + 
 						'Name ,' + 
 						'Eibuntorihikisakimei__c ,' + 
 						'Kakogaishamei__c ,' + 
@@ -64,7 +64,7 @@ module.exports = function (req, res){
 						 ' $18, ' +
 						 ' $19 ' +
 				') ' ;
-		instvar =[
+		var instvar =[
 						upInsO.name,
 						upInsO.eibuntorihikisakimei__c,
 						upInsO.kakogaishamei__c,
@@ -86,7 +86,7 @@ module.exports = function (req, res){
 						upInsO.herokuid__c
 				];
 		//update qry
-		updstr = 'Update salesforce.Account SET '+
+		var updstr = 'Update salesforce.Account SET '+
 						'Name= $1  ,'  +
 						'Eibuntorihikisakimei__c= $2  ,'  +
 						'Kakogaishamei__c= $3  ,'  +
@@ -107,7 +107,7 @@ module.exports = function (req, res){
 						'Shinseistatus__c= $18  ,'  +
 						'HerokuId__c= $19  '  +
 				' WHERE  TorihikisakiNo__c= $20 ' ;
-		updvar =[
+		var updvar =[
 						upInsO.name,
 						upInsO.eibuntorihikisakimei__c,
 						upInsO.kakogaishamei__c,
