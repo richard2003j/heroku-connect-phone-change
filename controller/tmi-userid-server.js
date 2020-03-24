@@ -18,7 +18,7 @@ module.exports = function (req, res){
 	
 
 		//insert qry
-		if( action == "edit" && idSyc == null ){
+		if( action == "edit" && idSyc == 'null' ){
 			res.status(400).json({error: '該当データが不整合なので、変更できません。'});
 			return;
 		}
