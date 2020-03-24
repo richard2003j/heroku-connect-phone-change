@@ -22,7 +22,7 @@ module.exports = function (req, res){
 			res.status(400).json({error: '新規作成でHerokuIDが必須です。'});
 			return;
 		}
-		inststr = 'INSERT INTO salesforce.TMI_Keiyaku_API__c( ' + 
+		var inststr = 'INSERT INTO salesforce.TMI_Keiyaku_API__c( ' + 
 						'KihonkeiyakuNo__c ,' + 
 						'Shinseistatus__c ,' + 
 						'Shinseikubun__c ,' + 
@@ -86,7 +86,7 @@ module.exports = function (req, res){
 						' $29, ' +
 						' $30 ' +
 				   ') ' ;
-		instvar =[
+		var instvar =[
 						upInsO.kihonkeiyakuno__c,
 						upInsO.shinseistatus__c,
 						upInsO.shinseikubun__c,
@@ -119,7 +119,7 @@ module.exports = function (req, res){
 						upInsO.herokuid__c
 					];
 		//update qry
-		updstr = 'Update salesforce.TMI_Keiyaku_API__c SET '+
+		var updstr = 'Update salesforce.TMI_Keiyaku_API__c SET '+
 							'KihonkeiyakuNo__c= $1  ,'  +
 							'Shinseistatus__c= $2  ,'  +
 							'Shinseikubun__c= $3  ,'  +
@@ -151,9 +151,15 @@ module.exports = function (req, res){
 							'Henkomaekeiyaku__c= $29  ,'  +
 							'HerokuId__c= $30  '  +
 						' WHERE  Name= $31 ' ;
-		updvar =instvar.concat([idSyc]);
+		var updvar =instvar.concat([idSyc]);
 	}
 	//return qry
+	var log_msg = ' (select record_id, table_name, sf_message from salesforce._trigger_log ' +
+		' where (record_id, table_name, processed_at) in ' + 
+		'(select record_id, table_name,  max(processed_at) as processed_at  from salesforce._trigger_log ' + 
+		' where table_name = $1 ' +
+		' group by record_id, table_name) ) b ';
+	
 	var qrystr = 'Select ' +
 							'Name ,' + 
 							'KihonkeiyakuNo__c ,' + 
@@ -185,23 +191,27 @@ module.exports = function (req, res){
 							'Himokuryokin5__c ,' + 
 							'Hoshokin__c ,' + 
 							'Henkomaekeiyaku__c ,' + 
-							'HerokuId__c ' + 
-						' from salesforce.TMI_Keiyaku_API__c   ';
-	var qryVar = [idSyc];
+							'HerokuId__c , ' + 
+							'sf_message ' + 
+					' from salesforce.TMI_Keiyaku_API__c a left join  ' + log_msg +  ' on a.id = b.record_id  ';
+	
+	
+	var qryVar = ['tmi_keiyaku_api__c'];
 
 	// dispather
 	if(action == "create"){
 		updstr = inststr;
 		updvar = instvar;
-		qrystr += ' where HerokuId__c= $1 ';
-		qryVar = [herokuId];
+		qrystr += ' and HerokuId__c= $2 ';
+		qryVar = qryVar.concat([herokuId]);
 	}else if(action == "edit"){
-		qrystr += ' where Name = $1 ';
+		qrystr += ' and Name = $2 ';
+		qryVar = qryVar.concat([idSyc]);
 	}else{
 		updstr = "select count(id) from salesforce.Contact ";
 		updvar = [];
 		qrystr = qrystr;
-		qryVar = [];
+		qryVar = qryVar;
 	}
 
     console.log( updstr);

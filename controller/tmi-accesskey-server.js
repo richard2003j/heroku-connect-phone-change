@@ -22,7 +22,7 @@ module.exports = function (req, res){
 			res.status(400).json({error: '新規作成でHerokuIDが必須です。'});
 			return;
 		}
-		inststr = 'INSERT INTO salesforce.TMI_Accesskey_API__c( ' + 
+		var inststr = 'INSERT INTO salesforce.TMI_Accesskey_API__c( ' + 
 						'KihonkeiyakuNo__c ,' + 
 						'Torihikisakimei__c ,' + 
 						'Status__c ,' + 
@@ -42,7 +42,7 @@ module.exports = function (req, res){
 						' $7, ' +
 						' $8  ' +
 					') ' ;
-		instvar =[
+		var instvar =[
 						upInsO.kihonkeiyakuno__c,
 						upInsO.torihikisakimei__c,
 						upInsO.status__c,
@@ -53,7 +53,7 @@ module.exports = function (req, res){
 						upInsO.herokuid__c
 					];
 		//update qry
-		updstr = 'Update salesforce.TMI_Accesskey_API__c SET '+
+		var updstr = 'Update salesforce.TMI_Accesskey_API__c SET '+
 							'KihonkeiyakuNo__c= $1  ,'  +
 							'Torihikisakimei__c= $2  ,'  +
 							'Status__c= $3  ,'  +
@@ -63,7 +63,7 @@ module.exports = function (req, res){
 							'Henkoriyu__c= $7  ,'  +
 							'HerokuId__c= $8  '  +
 						' WHERE  Name= $9 ' ;
-		updvar =[
+		var updvar =[
 					upInsO.kihonkeiyakuno__c,
 					upInsO.torihikisakimei__c,
 					upInsO.status__c,
