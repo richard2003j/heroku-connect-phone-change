@@ -144,7 +144,7 @@ module.exports = function (req, res){
 						'sf_message ' + 
 				' from salesforce.TMI_Setsuzokuuser_UserId__c a left join  ' + log_msg +  ' on a.id = b.record_id  ';
 
-	var qryVar = ['account'];
+	var qryVar = ['tmi_setsuzokuuser_userid__c'];
 
 	// dispather
 	if(action == "create"){
