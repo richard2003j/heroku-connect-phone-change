@@ -61,6 +61,7 @@
 			table: "#tblAct",
 			idSrc:  'name',
 			fields: [ 
+						{	label: '担当者氏名' , name:'name'  , type:'readonly', attr:{ disabled:true }    },
 						{	label: '姓' , name:'lastname'    },
 						{	label: '取引先名' , name:'accountid', type:'select',
 							options:[{label:'',name:null}].concat(com_account)
@@ -166,8 +167,10 @@
 						
 						},
 						{ data: "herokuid__c"},
-						{ data: "seikyushohakko__c"}
-						],
+						{ data: "seikyushohakko__c"},
+						{ data: 'sf_message'}
+
+					],
 			select: true,
 			buttons: [
 				{ extend: "create", text: "新規",editor: editor },

@@ -22,7 +22,7 @@ module.exports = function (req, res){
 			res.status(400).json({error: '新規作成でHerokuIDが必須です。'});
 			return;
 		}
-		inststr = 'INSERT INTO salesforce.Contact( ' + 
+	var	inststr = 'INSERT INTO salesforce.Contact( ' + 
 					'LastName ,' + 
 					'AccountId ,' + 
 					'Tantokubun__c ,' + 
@@ -64,7 +64,7 @@ module.exports = function (req, res){
 						 ' $18, ' +
 						 ' $19 ' +
 				') ' ;
-		instvar =[
+	var	instvar =[
 						upInsO.lastname,
 						upInsO.accountid,
 						upInsO.tantokubun__c,
@@ -86,7 +86,7 @@ module.exports = function (req, res){
 						upInsO.seikyushohakko__c
 				];
 		//update qry
-		updstr = 'Update salesforce.Contact SET '+
+	var	updstr = 'Update salesforce.Contact SET '+
 							'LastName= $1  ,'  +
 							'AccountId= $2  ,'  +
 							'Tantokubun__c= $3  ,'  +
@@ -107,7 +107,7 @@ module.exports = function (req, res){
 							'HerokuId__c= $18  ,'  +
 							'Seikyushohakko__c= $19  '  +
 				' WHERE  Name= $20 ' ;
-		updvar =[
+	var	updvar =[
 					upInsO.lastname,
 					upInsO.accountid,
 					upInsO.tantokubun__c,
@@ -131,6 +131,13 @@ module.exports = function (req, res){
 				];
 	}
 	//return qry
+	var log_msg = ' (select record_id, table_name, sf_message from salesforce._trigger_log ' +
+		' where (record_id, table_name, processed_at) in ' + 
+		'(select record_id, table_name,  max(processed_at) as processed_at  from salesforce._trigger_log ' + 
+		' where table_name = $1 ' +
+		' group by record_id, table_name) ) b ';
+	
+	
 	var qrystr = 'Select ' +
 					'Name ,' + 
 					'LastName ,' + 
@@ -151,23 +158,26 @@ module.exports = function (req, res){
 					'KakuninStatus__c ,' + 
 					'Contents__c ,' + 
 					'HerokuId__c ,' + 
-					'Seikyushohakko__c ' + 
-				' from salesforce.Contact   ';
-	var qryVar = [idSyc];
+					'Seikyushohakko__c, ' + 
+					'sf_message ' + 
+				' from salesforce.Contact a left join  ' + log_msg +  ' on a.id = b.record_id  ';
+	
+	var qryVar = ['contact'];
 
 	// dispather
 	if(action == "create"){
 		updstr = inststr;
 		updvar = instvar;
-		qrystr += ' where HerokuId__c= $1 ';
-		qryVar = [herokuId];
+		qrystr += ' and HerokuId__c= $2 ';
+		qryVar = qryVar.concat([herokuId]);
 	}else if(action == "edit"){
-		qrystr += ' where Name = $1 ';
+		qrystr += ' and Name = $2 ';
+		qryVar = qryVar.concat([idSyc]);
 	}else{
 		updstr = "select count(id) from salesforce.Contact ";
 		updvar = [];
 		qrystr = qrystr;
-		qryVar = [];
+		qryVar = qryVar;
 	}
 
     console.log( updstr);
