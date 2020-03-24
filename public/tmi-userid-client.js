@@ -18,10 +18,11 @@
 	var account_dic;
 	var user_dic;
 	// sanple for client js
-	var data_act = [{"name":"石井 照彦","lastname":"石井","aid":"0015D00000bf9cUQA","accountid":"0015D00000bf9cUQA","tantokubun__c":null,"kaishamei__c":"立花証券株式会社","eibuntorihikisakimei__c":"タチバナショウケン","kuni__c":"日本","yuubimbango__c":"103-0025","jusho1__c":"東京都中央区日本橋茅場町１－１３－１４","jusho2__c":null,"busho__c":"情報システム部","denwabango__c":"03-3669-4129","email1__c":"ishii@lban.co.jp.demo","email2__c":null,"email3__c":null,"biko__c":null,"kakuninstatus__c":null,"contents__c":null,"herokuid__c":null,"seikyushohakko__c":null},{"name":"田中 太郎","lastname":"田中","accountid":"0015D00000bCTELQA4","tantokubun__c":"契約担当者","kaishamei__c":null,"eibuntorihikisakimei__c":"クイック","kuni__c":null,"yuubimbango__c":null,"jusho1__c":null,"jusho2__c":null,"busho__c":null,"denwabango__c":null,"email1__c":null,"email2__c":null,"email3__c":null,"biko__c":null,"kakuninstatus__c":null,"contents__c":null,"herokuid__c":null,"seikyushohakko__c":null},{"name":"東浦 久雄","lastname":"東浦","accountid":"0015D00000bCX7PQAW","tantokubun__c":null,"kaishamei__c":"野村アセットマネジメント株式会社","eibuntorihikisakimei__c":"ノムラアセットマネジメント","kuni__c":"日本","yuubimbango__c":"103-8260","jusho1__c":"東京都中央区日本橋1-11-1","jusho2__c":null,"busho__c":"IT戦略部","denwabango__c":"03-3241-9025","email1__c":"h-higashiura@nomura-am.co.jp.demo","email2__c":null,"email3__c":null,"biko__c":null,"kakuninstatus__c":null,"contents__c":null,"herokuid__c":null,"seikyushohakko__c":null}];
-	com_account=[{"label":"東京海上日動火災保険株式会社","value":"0015D00000bDFrqQAG"},
-				{"label":"立花証券株式会社","value":"0015D00000bf9cUQA"}];
-
+	var data_act = [{"name":"SU-000022","userid__c":"test001id","shokaipassword__c":"pass1234","torihikisakimei__c":"0015D00000bAi6pQAC","keiyaku_kihonjohotoroku__c":true,"keiyaku_toroku_hikimodoshi_api_soba__c":false,"keiyaku_etsurankengen_api_soba__c":true,"seikyukengen_api_soba__c":false,"keiyaku_toroku_hikimodoshi_api_tekiji__c":false,"keiyaku_etsurankengen_api_tekiji__c":false,"seikyukengen_api_tekiji__c":false,"kaishibi_yotei__c":"2020-01-22","shuryobi_yotei__c":null,"teamnaishoninsha__c":"005O0000006Uf0EIAS","saishushoninsha__c":"005O0000006Uf0EIAS","teamnaishoninskip__c":false,"herokuid__c":111,"sf_message":1111}];
+	var com_account=[{"value":"001O000001gFydsIAC","label":"tttt1"},{"value":"001O000001gG0FLIA0","label":"t5"},{"value":"001O000001gG0voIAC","label":"QA取引先（削除用）"},{"value":"0015D00000bAi6pQAC","label":"テスト取引先"},{"value":"0015D00000bDFrqQAG","label":"東京海上日動火災保険株式会社"},{"value":"0015D00000bf9cUQAQ","label":"メールテストテスト"},{"value":"001O000001ftha6IAA","label":"ワークフロールールテスト会社"}];
+	var com_user=[{"value":"0052v00000cehFkAAI","label":"Process Automated"},{"value":"0052v00000cehKiAAI","label":"Platform Integration User"},{"value":"005O0000006Uf0EIAS","label":"システム"}];
+	account_dic = makeDic(com_account);
+	user_dic = 	makeDic(com_user);
 	// xxx
 	$(document).ready(function() {
 
@@ -58,7 +59,7 @@
 						{	label: 'ユーザID申請No' , name:'name' , type:'readonly', attr:{ disabled:true }  },
 						{	label: 'ユーザID' , name:'userid__c'    },
 						{	label: '初回パスワード' , name:'shokaipassword__c'    },
-						{	label: '取引先名' , name:'torihikisakimei__c'  ,type:'select',
+						{	label: '取引先名' , name:'torihikisakimei__c'  ,type:'select', id:'torihikisakimei__c_id',
 								options:com_account	},
 						{	label: '契約　基本情報登録権限' , name:'keiyaku_kihonjohotoroku__c'  ,type: 'checkbox',	options:[{ label:'', value:true }]   },
 						{	label: '契約　登録・引戻権限(API(相場情報))' , name:'keiyaku_toroku_hikimodoshi_api_soba__c'  , type: 'checkbox', options:[{ label:'', value:true }]  },
@@ -76,6 +77,10 @@
 
 					]
 		} );
+		// customize select by select2 
+		$('select',editor.field('torihikisakimei__c').node()).select2();
+		$('select',editor.field('teamnaishoninsha__c').node()).select2();
+		$('select',editor.field('saishushoninsha__c').node()).select2();
 		// validations
 		editor.on( 'preSubmit', function ( e, o, action ) {
 	        if ( action == 'create' ||  action == 'edit' ) {
