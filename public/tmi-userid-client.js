@@ -93,7 +93,7 @@
 	            //初回パスワード
 				var shokaipassword__c = this.field( 'shokaipassword__c' );
 	            if ( ! shokaipassword__c.val() ) shokaipassword__c.error( '初回パスワードが必須です。' );
-                if ( shokaipassword__c.val().length >= 32  || shokaipassword__c.val().length <8  )  shokaipassword__c.error( '初回パスワードの長さは8以上32以内英数です。' );
+                if ( shokaipassword__c.val().length >= 32    )  shokaipassword__c.error( '初回パスワードの長さは32以内英数です。' );
 
 	            //開始日（予定）
 				var kaishibi_yotei__c = this.field( 'kaishibi_yotei__c' );
