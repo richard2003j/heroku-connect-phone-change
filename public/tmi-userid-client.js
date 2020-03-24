@@ -78,9 +78,9 @@
 					]
 		} );
 		// customize select by select2 
-		$('select',editor.field('torihikisakimei__c').node()).select2();
-		$('select',editor.field('teamnaishoninsha__c').node()).select2();
-		$('select',editor.field('saishushoninsha__c').node()).select2();
+		$('select',editor.field('torihikisakimei__c').node()).select2({ width: '100%' });
+		$('select',editor.field('teamnaishoninsha__c').node()).select2({ width: '100%' });
+		$('select',editor.field('saishushoninsha__c').node()).select2({ width: '100%' });
 		// validations
 		editor.on( 'preSubmit', function ( e, o, action ) {
 	        if ( action == 'create' ||  action == 'edit' ) {

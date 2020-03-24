@@ -83,9 +83,9 @@
 			]
 		} );
 		// customize select by select2 
-		$('select',editor.field('kihonkeiyakuno__c').node()).select2();
-		$('select',editor.field('torihikisakimei__c').node()).select2();
-		$('select',editor.field('torihikisakimei__c').node()).select2();
+		$('select',editor.field('kihonkeiyakuno__c').node()).select2({ width: '100%' });
+		$('select',editor.field('torihikisakimei__c').node()).select2({ width: '100%' });
+		$('select',editor.field('torihikisakimei__c').node()).select2({ width: '100%' });
 
 		mTable = $('#tblAct').DataTable( {
 			scrollX: true,

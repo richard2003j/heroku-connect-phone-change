@@ -87,12 +87,12 @@
 					]
 		} );
 		// customize select by select2 
-		$('select',editor.field('contents__c').node()).select2();
-		$('select',editor.field('torihikisakimei__c').node()).select2();
-		$('select',editor.field('keiyakutantosha__c').node()).select2();
-		$('select',editor.field('seikyutantosha_kihonryokin__c').node()).select2();
-		$('select',editor.field('seikyutantosha_juryoryokin__c').node()).select2();
-		$('select',editor.field('seikyutantosha_sonotaryokin__c').node()).select2();
+		$('select',editor.field('contents__c').node()).select2({ width: '100%' });
+		$('select',editor.field('torihikisakimei__c').node()).select2({ width: '100%' });
+		$('select',editor.field('keiyakutantosha__c').node()).select2({ width: '100%' });
+		$('select',editor.field('seikyutantosha_kihonryokin__c').node()).select2({ width: '100%' });
+		$('select',editor.field('seikyutantosha_juryoryokin__c').node()).select2({ width: '100%' });
+		$('select',editor.field('seikyutantosha_sonotaryokin__c').node()).select2({ width: '100%' });
 
 		mTable = $('#tblAct').DataTable( {
 			scrollX: true,
