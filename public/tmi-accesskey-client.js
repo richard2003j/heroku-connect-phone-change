@@ -82,6 +82,10 @@
 				{	label: 'HerokuId' , name:'herokuid__c'    }
 			]
 		} );
+		// customize select by select2 
+		$('select',editor.field('kihonkeiyakuno__c').node()).select2();
+		$('select',editor.field('torihikisakimei__c').node()).select2();
+		$('select',editor.field('henkomaeaccesskey__c').node()).select2();
 
 		mTable = $('#tblAct').DataTable( {
 			scrollX: true,

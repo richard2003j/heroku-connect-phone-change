@@ -94,7 +94,10 @@
 						}
 					]
 		} );
-		
+		// customize select by select2 
+		$('select',editor.field('accountid').node()).select2();
+		$('select',editor.field('contents__c').node()).select2();
+
 		// validations
 		editor.on( 'preSubmit', function ( e, o, action ) {
 	        if ( action == 'create' ||  action == 'edit' ) {
