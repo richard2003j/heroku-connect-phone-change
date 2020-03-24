@@ -162,7 +162,8 @@
 							return	(data != '' && data != null)? keiyakuapi_dic[data] : data  
 							}
 				},
-				{ data: 'herokuid__c'}
+				{ data: 'herokuid__c'},
+				{ data: 'sf_message'}
 			],
 			select: true,
 			buttons: [
