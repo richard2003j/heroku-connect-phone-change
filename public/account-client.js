@@ -15,8 +15,8 @@
 			table: "#tblAct",
 			idSrc:  'torihikisakino__c',
 			fields: [ 
-						{	label: '取引先名' , name:'name'    },
 						{	label: 'SFDCメッセージ' , name:'sf_message' , type:'readonly', attr:{ disabled:true }     },
+						{	label: '取引先名' , name:'name'    },
 						{	label: '英文取引先名' , name:'eibuntorihikisakimei__c'    },
 						{	label: '過去会社名' , name:'kakogaishamei__c'    },
 						{	label: '国' , name:'kuni__c'    },
