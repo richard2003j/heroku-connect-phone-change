@@ -139,7 +139,8 @@
 							render: function ( data, type, row, meta ) {
 							return	data != ''  && data != null? user_dic[data]:data;}	},
 						{ data: "teamnaishoninskip__c"},
-						{ data: "herokuid__c"}
+						{ data: "herokuid__c"},
+						{ data: 'sf_message'}
 					],
 			select: true,
 			buttons: [

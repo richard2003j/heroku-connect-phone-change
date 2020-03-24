@@ -22,7 +22,7 @@ module.exports = function (req, res){
 			res.status(400).json({error: '新規作成でHerokuIDが必須です。'});
 			return;
 		}
-		inststr = 'INSERT INTO salesforce.TMI_Setsuzokuuser_UserId__c( ' + 
+		var inststr = 'INSERT INTO salesforce.TMI_Setsuzokuuser_UserId__c( ' + 
 						'UserId__c ,' + 
 						'ShokaiPassword__c ,' + 
 						'Torihikisakimei__c ,' + 
@@ -58,7 +58,7 @@ module.exports = function (req, res){
 						 ' $15, ' +
 						 ' $16 ' +
 				') ' ;
-		instvar =[
+		var instvar =[
 						upInsO.userid__c,
 						upInsO.shokaipassword__c,
 						upInsO.torihikisakimei__c,
@@ -77,7 +77,7 @@ module.exports = function (req, res){
 						upInsO.herokuid__c
 				];
 		//update qry
-		updstr = 'Update salesforce.TMI_Setsuzokuuser_UserId__c SET '+
+		var updstr = 'Update salesforce.TMI_Setsuzokuuser_UserId__c SET '+
 					'UserId__c= $1  ,'  +
 					'ShokaiPassword__c= $2  ,'  +
 					'Torihikisakimei__c= $3  ,'  +
@@ -95,7 +95,7 @@ module.exports = function (req, res){
 					'Teamnaishoninskip__c= $15  ,'  +
 					'HerokuId__c= $16  '  +
 						' WHERE  Name= $17 ' ;
-		updvar =[
+		var updvar =[
 					upInsO.userid__c,
 					upInsO.shokaipassword__c,
 					upInsO.torihikisakimei__c,
@@ -116,6 +116,13 @@ module.exports = function (req, res){
 				];
 	}
 	//return qry
+	var log_msg = ' (select record_id, table_name, sf_message from salesforce._trigger_log ' +
+		' where (record_id, table_name, processed_at) in ' + 
+		'(select record_id, table_name,  max(processed_at) as processed_at  from salesforce._trigger_log ' + 
+		' where table_name = $1 ' +
+		' group by record_id, table_name) ) b ';
+
+
 	var qrystr = 'Select ' +
 						'Name ,' + 
 						'UserId__c ,' + 
@@ -133,23 +140,26 @@ module.exports = function (req, res){
 						'Teamnaishoninsha__c ,' + 
 						'Saishushoninsha__c ,' + 
 						'Teamnaishoninskip__c ,' + 
-						'HerokuId__c ' + 
-					' from salesforce.TMI_Setsuzokuuser_UserId__c   ';
-	var qryVar = [idSyc];
+						'HerokuId__c ,' + 
+						'sf_message ' + 
+				' from salesforce.TMI_Setsuzokuuser_UserId__c a left join  ' + log_msg +  ' on a.id = b.record_id  ';
+
+	var qryVar = ['account'];
 
 	// dispather
 	if(action == "create"){
 		updstr = inststr;
 		updvar = instvar;
-		qrystr += ' where HerokuId__c= $1 ';
-		qryVar = [herokuId];
+		qrystr += ' and HerokuId__c= $2 ';
+		qryVar = qryVar.concat([herokuId]);
 	}else if(action == "edit"){
-		qrystr += ' where Name = $1 ';
+		qrystr += ' and Name = $2 ';
+		qryVar = qryVar.concat([idSyc]);
 	}else{
-		updstr = "select count(id) from salesforce.Contact ";
+		updstr = "select count(id) from salesforce.Account ";
 		updvar = [];
 		qrystr = qrystr;
-		qryVar = [];
+		qryVar = qryVar;
 	}
 
     console.log( updstr);
