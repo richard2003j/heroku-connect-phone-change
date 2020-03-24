@@ -161,4 +161,22 @@
 						render: function ( data, type, row, meta ) {
 							return	(data != '' && data != null)? keiyakuapi_dic[data] : data  
 							}
+				},
+				{ data: 'herokuid__c'}
+			],
+			select: true,
+			buttons: [
+				{ extend: "create", text: "新規",editor: editor },
+				{ extend: "edit", text: "編集",editor: editor }
+				
+			]
+		} ); // end mTable
+
+
+
+
+
+	} );
+
+
 				
