@@ -112,7 +112,7 @@ module.exports = function (req, res){
 					upInsO.saishushoninsha__c,
 					upInsO.teamnaishoninskip__c==undefined?false:true,
 					upInsO.herokuid__c,
-					idSyc
+					idSyc==null?'':idSyc
 				];
 	}
 	//return qry
