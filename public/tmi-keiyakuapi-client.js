@@ -109,9 +109,9 @@
 			]
 		} );
 		// customize select by select2 
-		$('select',editor.field('kihonkeiyakuno__c').node()).select2();
-		$('select',editor.field('shohin__c').node()).select2();
-		$('select',editor.field('henkomaekeiyaku__c').node()).select2();
+			$('select',editor.field('kihonkeiyakuno__c').node()).select2();
+			$('select',editor.field('shohin__c').node()).select2();
+			$('select',editor.field('henkomaekeiyaku__c').node()).select2();
 
 		mTable = $('#tblAct').DataTable( {
 			scrollX: true,
