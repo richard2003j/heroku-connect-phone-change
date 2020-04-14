@@ -86,7 +86,24 @@
 		$('select',editor.field('kihonkeiyakuno__c').node()).select2({ width: '100%' });
 		$('select',editor.field('torihikisakimei__c').node()).select2({ width: '100%' });
 		$('select',editor.field('torihikisakimei__c').node()).select2({ width: '100%' });
+		
+		
+		// validations
+		editor.on( 'preSubmit', function ( e, o, action ) {
+	        if ( action == 'create' ||  action == 'edit' ) {
+	            
+				//基本契約Ｎｏ
+				var kihonkeiyakuno = this.field( 'kihonkeiyakuno__c' );
+	            if ( ! kihonkeiyakuno.val() ) kihonkeiyakuno.error( '基本契約Ｎｏが必須です。' );
 
+	            // If any error was reported, cancel the submission so it can be corrected
+	            if ( this.inError() ) {
+	                return false;
+	            }
+	        }
+	    } );
+	    
+	    
 		mTable = $('#tblAct').DataTable( {
 			scrollX: true,
 			scrollY: 460,	
